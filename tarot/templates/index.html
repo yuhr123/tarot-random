@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}伟特塔罗牌{% endblock %}
+
+{% block body %}
+<div class="uk-container uk-container-small">
+    <h2>塔罗牌在线抽牌程序</h2>
+    <p class="uk-margin-top">
+        <b>注意：</b>
+        点击按钮会自动完成洗牌，并抽取三张牌，请调整好状态，专注于问题，然后点击按钮。
+    </p>
+    <form action="/three-cards" method="post">
+        <button class="uk-button uk-button-primary" type="submit">抽3张</button>
+    </form>
+</div>
+
+{% endblock %}
