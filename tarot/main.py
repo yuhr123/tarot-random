@@ -10,13 +10,13 @@ bp = Blueprint('main', __name__, url_prefix='')
 def index():
     return render_template('index.html')
 
-@bp.route('/three-cards', methods=['POST'])
-def get_cards():
+@bp.route('/cards/<int:num>/', methods=['GET', 'POST'])
+def get_cards(num):
     new_deck = shuffle_deck()
-    no = random.sample(range(78), 3)
+    no = random.sample(range(78), num)
     deck = cards()
     data = list()
-    for i in range(3):
+    for i in range(num):
         # reverse = "逆位" if new_deck[no[i]] == 1 else "正位"
         card = deck[no[i]]
         data.append({
