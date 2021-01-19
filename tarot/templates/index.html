@@ -4,12 +4,39 @@
 {% block body %}
 <div class="uk-container uk-container-small">
     <h2 class="uk-margin-top">塔罗牌在线抽牌程序</h2>
+    <hr>
     <p class="uk-margin-top">
-        点击按钮会自动完成洗牌，并抽取三张牌，请调整好状态，专注于问题，然后点击按钮。
+        请调整好状态，专注于问题，输入你要抽取几张牌，然后点击按钮。
     </p>
-    <form action="{{ url_for('main.get_cards', num=3) }}" method="post">
-        <button class="uk-button uk-button-primary" type="submit">抽3张</button>
+    <p>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul class="uk-text-danger">
+                {% for m in messages %}
+                <li>{{ m }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        {% endwith %}
+    </p>
+    <form action="{{ url_for('main.get_cards') }}" method="post">
+        抽取 <input type="text" name="num" value="3" class="uk-form-width-xsmall uk-text-center"> 张
+        <button class="uk-button uk-button-primary" type="submit">抽取</button>
     </form>
+
+    <div class="uk-margin-top">
+        <span class="uk-label uk-label-success">功能说明</span>
+        <span class="uk-text-small">
+            本程序遵循塔罗纸牌的洗牌规则，会预先生成78张正逆随机的牌，然后根据你的选择从中随机抽取卡牌。
+        </span>
+    </div>
+
+    <div class="uk-margin-top">
+        <span class="uk-label uk-label-primary">开源项目</span>
+        <span class="uk-text-small">
+            这是一个开源项目，项目仓库位于 <span uk-icon="icon: github"></span> <a class="uk-link" href="https://github.com/yuhr123/tarot-random">yuhr123/tarot-random</a>，<span class="uk-text-danger">迫切渴望前端小伙伴一起协作！</span>。
+        </span> 
+    </div>
 </div>
 
 {% endblock %}
